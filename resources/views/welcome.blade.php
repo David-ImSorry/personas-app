@@ -36,7 +36,7 @@
         <div class="row">
             <div class="col-lg-3 col-md-6 mb-4">
                 <div class="card">
-                    <a href="comuna.html">
+                    <a href="comunas">
                         <img src="comuna-image.jpg" class="card-img-top" alt="Comuna">
                         <div class="card-body">
                             <h5 class="card-title">Comuna</h5>
@@ -46,7 +46,7 @@
             </div>
             <div class="col-lg-3 col-md-6 mb-4">
                 <div class="card">
-                    <a href="departamentos.html">
+                    <a href="departamentos">
                         <img src="departamentos-image.jpg" class="card-img-top" alt="Departamentos">
                         <div class="card-body">
                             <h5 class="card-title">Departamentos</h5>
@@ -56,7 +56,7 @@
             </div>
             <div class="col-lg-3 col-md-6 mb-4">
                 <div class="card">
-                    <a href="paises.html">
+                    <a href="paises">
                         <img src="paises-image.jpg" class="card-img-top" alt="Países">
                         <div class="card-body">
                             <h5 class="card-title">Países</h5>
@@ -66,7 +66,7 @@
             </div>
             <div class="col-lg-3 col-md-6 mb-4">
                 <div class="card">
-                    <a href="municipios.html">
+                    <a href="municipios">
                         <img src="municipios-image.jpg" class="card-img-top" alt="Municipios">
                         <div class="card-body">
                             <h5 class="card-title">Municipios</h5>
