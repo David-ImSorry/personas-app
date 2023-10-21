@@ -8,18 +8,18 @@
     <!-- Bootstrap CSS -->
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
 
-    <title>Add Comuna</title>
+    <title>Add Departamento</title>
   </head>
   <body>
     <div class="container">
-        <h1>Add Comuna</h1>
-        <form method="post" action="{{ route('comunas.store') }}">
+        <h1>Add Departamento</h1>
+        <form method="post" action="{{ route('departamentos.store') }}">
         @csrf    
         <div class="mb-3">
                 <label for="id" class="form-label">Code</label>
                 <input type="text" class="form-control" id="id" aria-describedby="idHelp" name="id"
                   disabled="disabled">
-                <div id="idHelp" class="form-text">Comune Code</div>
+                <div id="idHelp" class="form-text">Departament Code</div>
             </div>
             <div class="mb-3">
                 <label for="name" class="form-label">Comune</label>
@@ -36,7 +36,7 @@
             </select>
             <div class="mt-3">
                 <button type="submit" class="btn btn-primary">Save</button>
-                <a href="{{ route('comunas.index') }}" class="btn btn-warning">Cancel</a>
+                <a href="{{ route('departamentos.index') }}" class="btn btn-warning">Cancel</a>
             </div>
         </form>
     </div>
