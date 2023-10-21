@@ -11,28 +11,28 @@
   </head>
   <body>
     <div class="container">
-        <h1>Listado de Comunas</h1>
-        <a href="{{ route('comunas.create') }}" class="btn btn-success">Add</a>
+        <h1>Listado de Paises</h1>
+        <a href="{{ route('paises.create') }}" class="btn btn-success">Add</a>
         <table class="table">
             <thead>
                 <tr>
                     <th scope="col">Code</th>
-                    <th scope="col">Comune</th>
-                    <th scope="col">Municipality</th>
+                    <th scope="col">Country</th>
+                    <th scope="col">Nacionality</th>
                     <th scope="col">Actions</th>
                 </tr>
             </thead>
             <tbody>
-                @foreach ($comunas as $comuna)
+                @foreach ($paises as $pais)
                 <tr>
-                    <th scope="row">{{ $comuna->comu_codi }}</th>
-                    <td>{{ $comuna->comu_nomb }}</td>
-                    <td>{{ $comuna->muni_nomb }}</td>
+                    <th scope="row">{{ $pais->pais_codi }}</th>
+                    <td>{{ $pais->pais_nomb }}</td>
+                    <td>{{ $pais->pais_capi }}</td>
                     <td>
-                      <a href="{{route('comunas.edit',['comuna'=>$comuna->comu_codi]) }}"
+                      <a href="{{route('paises.edit',['pais'=>$pais->pais_codi]) }}"
                         class="btn btn-info"> Edit</a></li>
 
-                      <form action="{{ route('comunas.destroy', ['comuna' => $comuna->comu_codi]) }}"
+                      <form action="{{ route('paises.destroy', ['pais' => $pais->pais_codi]) }}"
                         method='POST' style="display: inline-block">
                         @method('delete')
                         @csrf
