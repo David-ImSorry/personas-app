@@ -31,11 +31,11 @@
             <label for="municipality">Municipality:</label>
             <select class="form-select" id="municipality" name="code" Required>
               <option selected disabled value="">Choose one...</option>
-              @foreach ($municipios as $municipio)
-                @if ($municipio->muni_codi == $comuna->muni_codi)
-                  <option selected value="{{ $municipio->muni_codi }}">{{ $municipio->muni_nomb }}</option>
+              @foreach ($paises as $pais)
+                @if ($pais->pais_codi == $pais->pais_codi)
+                  <option selected value="{{ $pais->pais_codi }}">{{ $pais->pais_nomb }}</option>
                 @else
-                  <option value="{{ $municipio->muni_codi }}">{{ $municipio->muni_nomb }}</option>
+                  <option value="{{ $pais->pais_codi }}">{{ $pais->pais_nomb }}</option>
                 @endif
               @endforeach
             </select>

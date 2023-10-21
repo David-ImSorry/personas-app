@@ -30,8 +30,8 @@
             <label for="municipality">Municipality:</label>
             <select class="form-select" id="municipality" name="code" Required>
               <option selected disabled value="">Choose one...</option>
-              @foreach ($municipios as $municipio)
-                <option value="{{ $municipio->muni_codi }}">{{ $municipio->muni_nomb }}</option>
+              @foreach ($paises as $pais)
+                <option value="{{ $pais->pais_codi }}">{{ $pais->pais_nomb }}</option>
               @endforeach
             </select>
             <div class="mt-3">
