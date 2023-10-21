@@ -8,24 +8,24 @@
     <!-- Bootstrap CSS -->
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
 
-    <title>Edit Comune</title>
+    <title>Edit Departament</title>
   </head>
   <body>
     <div class="container">
-        <h1>Edit Comune</h1>
-        <form method="POST" action="{{ route('comunas.update', ['comuna' => $comuna->comu_codi]) }}">
+        <h1>Edit Departament</h1>
+        <form method="POST" action="{{ route('departamentos.update', ['departamento' => $departamento->depa_codi]) }}">
           @method('put')          
           @csrf    
         <div class="mb-3">
                 <label for="codigo" class="form-label">Id</label>
                 <input type="text" class="form-control" id="id" aria-describedby="codigoHelp" name="id"
-                  disabled="disabled" value="{{ $comuna->comu_codi }}">
-                <div id="codigoHelp" class="form-text">Commune id</div>
+                  disabled="disabled" value="{{ $departamento->depa_codi }}">
+                <div id="codigoHelp" class="form-text">Departament id</div>
             </div>
             <div class="mb-3">
-                <label for="name" class="form-label">Commune</label>
-                <input type="text" required class="form-control" id="name" placeholder="Comuna name." 
-                  name="name" value="{{ $comuna->comu_nomb }}">
+                <label for="name" class="form-label">Departament</label>
+                <input type="text" required class="form-control" id="name" placeholder="Departament name." 
+                  name="name" value="{{ $departamento->depa_nomb }}">
             </div>
 
             <label for="municipality">Municipality:</label>
@@ -41,7 +41,7 @@
             </select>
             <div class="mt-3">
                 <button type="submit" class="btn btn-primary">Update</button>
-                <a href="{{ route('comunas.index') }}" class="btn btn-warning">Cancel</a>
+                <a href="{{ route('departamentos.index') }}" class="btn btn-warning">Cancel</a>
             </div>
         </form>
     </div>

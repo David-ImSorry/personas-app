@@ -11,8 +11,8 @@
   </head>
   <body>
     <div class="container">
-        <h1>Listado de Comunas</h1>
-        <a href="{{ route('comunas.create') }}" class="btn btn-success">Add</a>
+        <h1>Listado de Departamentos</h1>
+        <a href="{{ route('departametos.create') }}" class="btn btn-success">Add</a>
         <table class="table">
             <thead>
                 <tr>
@@ -23,16 +23,16 @@
                 </tr>
             </thead>
             <tbody>
-                @foreach ($comunas as $comuna)
+                @foreach ($departamento as $departamento)
                 <tr>
-                    <th scope="row">{{ $comuna->comu_codi }}</th>
-                    <td>{{ $comuna->comu_nomb }}</td>
-                    <td>{{ $comuna->muni_nomb }}</td>
+                    <th scope="row">{{ $departamento->depa_codi }}</th>
+                    <td>{{ $departamento->depa_nomb }}</td>
+                    <td>{{ $departamento->muni_nomb }}</td>
                     <td>
-                      <a href="{{route('comunas.edit',['comuna'=>$comuna->comu_codi]) }}"
+                      <a href="{{route('departamentos.edit',['departamento'=>$departamento->depa_codi]) }}"
                         class="btn btn-info"> Edit</a></li>
 
-                      <form action="{{ route('comunas.destroy', ['comuna' => $comuna->comu_codi]) }}"
+                      <form action="{{ route('departamentos.destroy', ['departamento'=>$departamento->depa_codi]) }}"
                         method='POST' style="display: inline-block">
                         @method('delete')
                         @csrf
