@@ -93,7 +93,7 @@ class ComunaController extends Controller
      */
     public function update(Request $request, $id)
     {
-        $comuna = new Comuna();
+        $comuna = Comuna::find($id);
         
         $comuna->comu_nomb = $request->name;
         $comuna->muni_codi = $request->code;

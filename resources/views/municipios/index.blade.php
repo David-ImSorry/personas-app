@@ -11,28 +11,28 @@
   </head>
   <body>
     <div class="container">
-        <h1>Listado de Comunas</h1>
-        <a href="{{ route('comunas.create') }}" class="btn btn-success">Add</a>
+        <h1>Listado de Municipios</h1>
+        <a href="{{ route('municipios.create') }}" class="btn btn-success">Add</a>
         <table class="table">
             <thead>
                 <tr>
                     <th scope="col">Code</th>
-                    <th scope="col">Comune</th>
                     <th scope="col">Municipality</th>
+                    <th scope="col">Departament</th>
                     <th scope="col">Actions</th>
                 </tr>
             </thead>
             <tbody>
-                @foreach ($comunas as $comuna)
+                @foreach ($municipios as $municipio)
                 <tr>
-                    <th scope="row">{{ $comuna->comu_codi }}</th>
-                    <td>{{ $comuna->comu_nomb }}</td>
-                    <td>{{ $comuna->muni_nomb }}</td>
+                    <th scope="row">{{ $municipio->muni_codi }}</th>
+                    <td>{{ $municipio->muni_nomb }}</td>
+                    <td>{{ $municipio->depa_nomb }}</td>
                     <td>
-                      <a href="{{route('comunas.edit',['comuna'=>$comuna->comu_codi]) }}"
+                      <a href="{{route('municipios.edit',['municipio'=>$municipio->muni_codi]) }}"
                         class="btn btn-info"> Edit</a></li>
 
-                      <form action="{{ route('comunas.destroy', ['comuna' => $comuna->comu_codi]) }}"
+                      <form action="{{ route('municipios.destroy', ['municipio' => $municipio->muni_codi]) }}"
                         method='POST' style="display: inline-block">
                         @method('delete')
                         @csrf
