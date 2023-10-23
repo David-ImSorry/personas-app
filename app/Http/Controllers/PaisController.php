@@ -4,7 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Pais;
 use Illuminate\Http\Request;
-use Illuminate\Support\Facades\Db;
+use Illuminate\Support\Facades\DB;
 
 class PaisController extends Controller
 {
@@ -14,12 +14,15 @@ class PaisController extends Controller
      * @return \Illuminate\Http\Response
      */
     public function index()
-        {
-            $paises = DB::table('tb_pais')
-                ->get();
-
-            return view("paises.index", ["paises" => $paises]);
-        }
+    {
+        
+        
+        $paises = DB::table('tb_pais')
+       ->join('tb_municipio', 'tb_pais.pais_capi', "=", 'tb_municipio.muni_codi')
+       ->select('tb_pais.*', "tb_municipio.muni_nomb")
+       ->get();       
+        return view("paises.index",['paises' => $paises]);//se le quita la s 
+    }
 
     /**
      * Show the form for creating a new resource.
@@ -27,10 +30,12 @@ class PaisController extends Controller
      * @return \Illuminate\Http\Response
      */
     public function create()
-        {
-            $paises = DB::table('tb_pais')->get();
-            return view('paises.new', ['paises' => $paises]);
-        }
+    {
+        $municipios = DB::table('tb_municipio')
+        ->orderBy("muni_nomb")
+        ->get();
+        return view('paises.new',['municipios'=>$municipios]);
+    }
 
     /**
      * Store a newly created resource in storage.
@@ -39,21 +44,21 @@ class PaisController extends Controller
      * @return \Illuminate\Http\Response
      */
     public function store(Request $request)
-        {
-            $request->validate([
-                'pais_codi' => 'required|alpha|size:3',
-                'pais_nomb' => 'required',
-                'pais_capi' => 'required|numeric',
-            ]);
+    {
         
-            $pais = new Pais();
-            $pais->pais_codi = $request->input('pais_codi');
-            $pais->pais_nomb = $request->input('pais_nomb');
-            $pais->pais_capi = $request->input('pais_capi');
-            $pais->save();
+        $pais = new Pais();
+        $pais->pais_codi = $request->id;
+        $pais ->pais_nomb =$request->name;
+        $pais ->pais_capi =$request->code;         
         
-            return redirect()->route('paises.index');
-        }
+        $pais->save();
+
+        $paises = DB::table('tb_pais')
+        ->join('tb_municipio', 'tb_pais.pais_capi', '=', 'tb_municipio.muni_codi')
+        ->select('tb_pais.*', 'tb_municipio.muni_nomb')
+        ->get();       
+        return view('paises.index',['paises'=>$paises]);
+    }
 
     /**
      * Display the specified resource.
@@ -74,8 +79,11 @@ class PaisController extends Controller
      */
     public function edit($id)
     {
-        $pais = Pais::findOrFail($id);
-        return view('paises.edit', compact('pais'));
+        $pais = Pais::find($id);
+       $municipios = DB::table('tb_municipio')
+       ->orderBy('muni_nomb')
+       ->get();
+       return view('paises.edit',['pais'=>$pais, 'municipios'=> $municipios]);
     }
 
     /**
@@ -87,18 +95,23 @@ class PaisController extends Controller
      */
     public function update(Request $request, $id)
     {
-        $request->validate([
-            'pais_nomb' => 'required',
-            'pais_capi' => 'required|numeric',
-        ]);
-
         $pais = Pais::find($id);
-        $pais->pais_nomb = $request->input('pais_nomb');
-        $pais->pais_capi = $request->input('pais_capi');
-        $pais->save();
 
-        return view("paises.index", ["paises" => $paises]);
+        if ($pais) 
+        {
+            $pais->pais_nomb = $request->name;
+            $pais->pais_capi = $request->code;
+            $pais->save();
+
+            $paises = DB::table('tb_pais')
+                ->join('tb_municipio', 'tb_pais.pais_capi', '=', 'tb_municipio.muni_codi')
+                ->select('tb_pais.*', 'tb_municipio.muni_nomb')
+                ->get();
+
+            return view('paises.index', ['paises' => $paises]);
+        }
     }
+
     /**
      * Remove the specified resource from storage.
      *
@@ -108,13 +121,12 @@ class PaisController extends Controller
     public function destroy($id)
     {
         $pais = Pais::find($id);
+        $pais ->delete();
 
-        if ($pais) {
-            $pais->delete();
-        }
-
-        $paises = DB::table('tb_pais')->get(); // Puedes ajustar esta consulta según tus necesidades
-
-        return view('paises.index', ['paises' => $paises]);
+        $paises = DB::table('tb_pais')
+        ->join('tb_municipio', 'tb_pais.pais_capi', '=', 'tb_municipio.muni_codi')
+        ->select('tb_pais.*', "tb_municipio.muni_nomb")
+        ->get();        
+        return view('paises.index',['paises'=>$paises]);
     }
 }
