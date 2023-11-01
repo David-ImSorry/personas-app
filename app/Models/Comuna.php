@@ -10,5 +10,5 @@ class Comuna extends Model
     use HasFactory;
     protected $table = 'tb_comuna';
     protected $primaryKey = 'comu_codi';
-    public $timestamps = false;
+    public $timestamps = false;                                                                                                                                                                                     
 }

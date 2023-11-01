@@ -6,13 +6,16 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
 
     <!-- Bootstrap CSS -->
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" 
+    integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
 
+    <title>Listado de Comunas</title>
   </head>
   <body>
     <div class="container">
         <h1>Listado de Comunas</h1>
         <a href="{{ route('comunas.create') }}" class="btn btn-success">Add</a>
+        <button class="btn btn-warning" onclick="goBack()">Volver</button>
         <table class="table">
             <thead>
                 <tr>
@@ -30,8 +33,9 @@
                     <td>{{ $comuna->muni_nomb }}</td>
                     <td>
                       <a href="{{route('comunas.edit',['comuna'=>$comuna->comu_codi]) }}"
-                        class="btn btn-info"> Edit</a></li>
+                        class="btn btn-info"> Edit </a></li>
 
+                      
                       <form action="{{ route('comunas.destroy', ['comuna' => $comuna->comu_codi]) }}"
                         method='POST' style="display: inline-block">
                         @method('delete')
@@ -40,9 +44,16 @@
                       </form>
                     </td>
                 </tr>
-                @endforeach
+                @endforeach          
             </tbody>
         </table>
     <div>
+      <script>
+        function goBack() {
+            window.history.back();
+        }
+    </script>
   </body>
+  
+
 </html>

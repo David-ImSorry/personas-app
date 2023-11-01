@@ -97,19 +97,15 @@ class PaisController extends Controller
     {
         $pais = Pais::find($id);
 
-        if ($pais) 
-        {
-            $pais->pais_nomb = $request->name;
-            $pais->pais_capi = $request->code;
-            $pais->save();
-
-            $paises = DB::table('tb_pais')
-                ->join('tb_municipio', 'tb_pais.pais_capi', '=', 'tb_municipio.muni_codi')
-                ->select('tb_pais.*', 'tb_municipio.muni_nomb')
-                ->get();
-
-            return view('paises.index', ['paises' => $paises]);
-        }
+        $pais->pais_nomb = $request->name;
+        $pais->pais_capi = $request->code;
+        $pais->save();
+        $paises = DB::table('tb_pais')
+        ->join('tb_municipio', 'tb_pais.pais_capi', '=', 'tb_municipio.muni_codi')
+        ->select('tb_pais.*',"tb_municipio.muni_nomb")
+       
+        ->get();
+         return view('paises.index',['paises'=>$paises]);
     }
 
     /**
